@@ -65,4 +65,6 @@
  */
 -(void) managedObjFailed;
 
+-(void) managedObjLoading;
+
 @end

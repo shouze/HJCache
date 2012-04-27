@@ -255,6 +255,7 @@
 
 
 -(void)startDownloadingFromURL {
+    [self callbackLoading];
 	//NSLog(@"HJMOHandler starting download for %@",self);
 	HJMOPolicy* policy = [self policy];
 	NSURLRequest* request = [NSURLRequest requestWithURL:url
@@ -303,6 +304,12 @@
 			[objManager removeFromHandlerFromCaches:self];
 			[self callbackFailedToUsers];
 		}
+	}
+}
+
+-(void) callbackLoading {
+	for (id<HJMOUser> user in [users objectEnumerator]) {
+		[user managedObjLoading];
 	}
 }
 

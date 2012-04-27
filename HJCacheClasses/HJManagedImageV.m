@@ -93,6 +93,10 @@
 	image = nil;
 }
 
+-(void) managedObjLoading{
+    showFadeIn = YES;
+}
+
 -(void) managedObjReady {
 	//NSLog(@"moHandlerReady %@",moHandler);
 	[self setImage:moHandler.managedObj];
@@ -142,7 +146,7 @@
 	[imageView setNeedsLayout];
 	[self setNeedsLayout];
     
-    if(fadeInEffect)
+    if(fadeInEffect && showFadeIn) //we wante fadeIn and image isn't in cache
     {
         // Fade out the view right away
         [UIView animateWithDuration:1.0

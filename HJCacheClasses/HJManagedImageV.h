@@ -48,6 +48,7 @@
 	NSInvocation* onImageTap;
 	int index; // optional; may be used to assign an ordering to a image.
 	int modification;
+    BOOL showFadeIn;
 }
 
 @property int modification;
