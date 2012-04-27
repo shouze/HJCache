@@ -24,6 +24,7 @@
 @synthesize loadingWheel;
 @synthesize index;
 @synthesize desiredContentMode;
+@synthesize fadeInEffect;
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -134,11 +135,30 @@
 	[imageView removeFromSuperview];
 	self.imageView = [[[UIImageView alloc] initWithImage:theImage] autorelease];
 	imageView.contentMode = desiredContentMode;
+    imageView.alpha = 0.0;
 	imageView.autoresizingMask = ( UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight );
 	[self addSubview:imageView];
 	imageView.frame = self.bounds;
 	[imageView setNeedsLayout];
 	[self setNeedsLayout];
+    
+    if(fadeInEffect)
+    {
+        // Fade out the view right away
+        [UIView animateWithDuration:1.0
+                              delay: 0.0
+                            options: UIViewAnimationOptionCurveEaseIn
+                         animations:^{
+                             loadingWheel.alpha = 0.0;
+                             imageView.alpha = 1.0;
+                         }
+                         completion:^(BOOL finished){
+                         }];
+    }
+    else {
+        loadingWheel.alpha = 0.0;
+        imageView.alpha = 1.0;
+    }
 	//NSLog(@"setImageCallback from %@ to %@",self,callbackOnSetImage);
 	[loadingWheel stopAnimating];
 	[loadingWheel removeFromSuperview];

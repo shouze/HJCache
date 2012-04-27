@@ -52,6 +52,7 @@
 
 @property int modification;
 @property int index;
+@property (nonatomic) BOOL fadeInEffect;
 @property (nonatomic, retain) UIImage* image;
 @property (nonatomic, retain) UIImageView* imageView;
 @property (nonatomic, retain) UIActivityIndicatorView* loadingWheel;
