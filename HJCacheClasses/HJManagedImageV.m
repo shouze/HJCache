@@ -132,6 +132,7 @@
 		//when the same image is on the screen multiple times, an image that is alredy set might be set again with the same image.
 		return; 
 	}
+    [self showLoadingWheel];
 	[theImage retain];
 	[image release];
 	image = theImage;
@@ -149,14 +150,23 @@
     if(fadeInEffect && showFadeIn) //we wante fadeIn and image isn't in cache
     {
         // Fade out the view right away
-        [UIView animateWithDuration:1.0
+        [UIView animateWithDuration:0.4
                               delay: 0.0
                             options: UIViewAnimationOptionCurveEaseIn
                          animations:^{
-                             loadingWheel.alpha = 0.0;
                              imageView.alpha = 1.0;
+                             if(loadingWheel)
+                             {
+                                 if(loadingWheel)
+                                 {
+                                     [loadingWheel stopAnimating];
+                                     [loadingWheel removeFromSuperview];
+                                 }
+                                 loadingWheel.alpha = 0.0;
+                             }
                          }
                          completion:^(BOOL finished){
+
                          }];
     }
     else {
@@ -164,8 +174,7 @@
         imageView.alpha = 1.0;
     }
 	//NSLog(@"setImageCallback from %@ to %@",self,callbackOnSetImage);
-	[loadingWheel stopAnimating];
-	[loadingWheel removeFromSuperview];
+	
 	self.loadingWheel = nil;
 	self.hidden=NO;
 	if (image!=nil) {
