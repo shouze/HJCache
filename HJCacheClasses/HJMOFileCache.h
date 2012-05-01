@@ -58,5 +58,6 @@
 -(void)trimCache;
 -(void)trimCacheUsingBackgroundThread;
 -(void)trimCacheDir:(NSString*)cachePath;
+int fileAgeCompareFunction(id obj1, id obj2, void *context);
 
 @end
